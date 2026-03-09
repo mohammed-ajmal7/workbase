@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 import ReduxProvider from "@/redux/providers/ReduxProvider";
 
 export default function RootLayout({
