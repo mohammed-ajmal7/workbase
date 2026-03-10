@@ -3,16 +3,22 @@ import styles from "./authForm.module.scss";
 import Link from "next/link";
 import { RegisterFormInput } from "../../types/authTypes";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useAuth } from "../../hooks/useAuth";
+
 export default function RegisterForm() {
+  const { signup, loading, error } = useAuth();
+
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<RegisterFormInput>();
 
-  const onSubmit: SubmitHandler<RegisterFormInput> = async (data) =>
+  const onSubmit: SubmitHandler<RegisterFormInput> = async (data) => {
+    await signup(data);
     console.log(data);
+  };
 
   const password = watch("password");
   return (
@@ -80,8 +86,9 @@ export default function RegisterForm() {
           <p className={styles.errorText}>{errors.confirmPassword.message}</p>
         )}
       </div>
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Registering..." : "Register"}
+      {error && <p className={styles.errorText}>{error}</p>}
+      <button type="submit" disabled={loading}>
+        {loading ? "Registering..." : "Register"}
       </button>
       <div className={styles.redirectSection}>
         <p>

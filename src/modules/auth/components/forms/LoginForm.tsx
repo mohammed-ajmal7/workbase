@@ -3,15 +3,21 @@ import styles from "./authForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginFormInput } from "../../types/authTypes";
 import Link from "next/link";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function LoginForm() {
+  const { login, loading, error } = useAuth();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormInput>();
-  const onSubmit: SubmitHandler<LoginFormInput> = async (data) =>
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
+    await login(data);
+    console.log("---->", data);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSection}>
       <div className={styles.fields}>
@@ -44,8 +50,11 @@ export default function LoginForm() {
           <p className={styles.errorText}>{errors.password.message}</p>
         )}
       </div>
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Logging in..." : "Login"}
+
+      {error && <p className={styles.errorText}>{error}</p>}
+
+      <button type="submit" disabled={loading}>
+        {loading ? "Logging in..." : "Login"}
       </button>
       <div className={styles.redirectSection}>
         <p>
