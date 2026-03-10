@@ -33,13 +33,13 @@ export const authService = {
     return user;
   },
 
-  // async getSession() {
-  //   const { data, error } = await supabase.auth.getSession();
+  async getSession() {
+    const { data, error } = await supabase.auth.getSession();
 
-  //   if (error) throw new Error(error.message);
+    if (error) throw new Error(error.message);
 
-  //   return data.session;
-  // },
+    return data.session;
+  },
 
   async signOutSession() {
     const { error } = await supabase.auth.signOut();
