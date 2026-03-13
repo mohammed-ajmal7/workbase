@@ -1,8 +1,26 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import { useAppSelector } from "@/redux/hooks/hooks";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
-export default function AuthWrapper({ children }: { children: ReactNode }) {
-  const [loading, setLoading] = useState(true);
+const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
+  const { token = "", user } = useAppSelector((state) => state.auth);
 
-  return <div>index</div>;
-}
+  const router = useRouter();
+  const path = usePathname();
+
+  useEffect(() => {
+    if (!token || !user) {
+      router.push("/login");
+      return;
+    } else if (token && user && path.trim() === "/login") {
+      router.push("/dashboard");
+    }
+  }, [token, user, router, path]);
+
+  if (token && path.trim() === "/login") return "Loading....";
+  if (token) return <>{children}</>;
+  if (!token && path.trim() === "/login") return <>{children}</>;
+};
+
+export default AuthWrapper;

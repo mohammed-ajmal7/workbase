@@ -1,0 +1,6 @@
+@use "@/styles/variables.scss";
+.sideBarContainer {
+  background: var(--color-bg);
+  width: 100px;
+  max-width: 150px;
+}
