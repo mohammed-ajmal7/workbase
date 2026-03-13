@@ -1,6 +1,7 @@
+import AuthWrapper from "@/components/AuthWrapper";
 import "../styles/globals.css";
 import ReduxProvider from "@/redux/providers/ReduxProvider";
-
+import React from "react";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -9,7 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <AuthWrapper>{children}</AuthWrapper>
+        </ReduxProvider>
       </body>
     </html>
   );

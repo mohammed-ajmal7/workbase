@@ -1,0 +1,50 @@
+@use "@/styles/variables.scss";
+.headerContainer {
+  border-width: 1px 1px 1px 0px;
+  border-style: solid;
+  border-color: var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  .headerRightSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    .bellIconBox {
+      cursor: pointer;
+      position: relative;
+      padding: 10px;
+      border-radius: 8px;
+      &:hover {
+        background: var(--color-grey-hover);
+      }
+      &::before {
+        content: "";
+        background: #1365e0;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 9px;
+        right: 9px;
+      }
+    }
+
+    .headerAvatarBox {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 8px;
+
+      &:hover {
+        background: var(--color-grey-hover);
+      }
+    }
+  }
+}
