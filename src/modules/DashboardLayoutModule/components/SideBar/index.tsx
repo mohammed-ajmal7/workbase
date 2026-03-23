@@ -62,24 +62,27 @@ export default function SideBar() {
         <h1>WorkBase</h1>
       </div>
       <div className={styles.menuContainer}>
-        {sidebarElements.map((cElement) => (
+        {sidebarElements.map((cElement) => {
           const isActive = currentPath === cElement.pathName;
-          <div
-            className={`${styles.menuItemContainer} ${activeItem === cElement.name ? styles.active : ""}`}
-            onClick={() => handleClick(cElement.pathName, cElement.name)}
-            key={cElement.name}
-          >
-            <LucideIcon
-              name={cElement.icon}
-              className={`${styles.menuItemIcon} ${activeItem === cElement.name ? styles.activeItem : ""}`}
-            />
-            <span
-              className={`${styles.menuItemName} ${activeItem === cElement.name ? styles.activeName : ""}`}
+
+          return (
+            <div
+              className={`${styles.menuItemContainer} ${isActive ? styles.active : ""}`}
+              onClick={() => handleClick(cElement.pathName)}
+              key={cElement.name}
             >
-              {cElement.name}
-            </span>
-          </div>
-        ))}
+              <LucideIcon
+                name={cElement.icon}
+                className={`${styles.menuItemIcon} ${isActive ? styles.activeItem : ""}`}
+              />
+              <span
+                className={`${styles.menuItemName} ${isActive ? styles.activeName : ""}`}
+              >
+                {cElement.name}
+              </span>
+            </div>
+          );
+        })}
         <div className={styles.userContainer}></div>
       </div>
     </aside>

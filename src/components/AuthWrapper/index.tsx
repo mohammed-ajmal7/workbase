@@ -9,18 +9,20 @@ const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const path = usePathname();
 
+  const isAuthPage = ["/login", "/register"].includes(path.trim());
+
   useEffect(() => {
     if (!token || !user) {
-      router.push("/login");
-      return;
-    } else if (token && user && path.trim() === "/login") {
+      if (!isAuthPage) router.push("/register");
+    } else if (token && user && isAuthPage) {
       router.push("/dashboard");
     }
-  }, [token, user, router, path]);
+  }, [token, user, router, isAuthPage]);
 
-  if (token && path.trim() === "/login") return "Loading....";
-  if (token) return <>{children}</>;
-  if (!token && path.trim() === "/login") return <>{children}</>;
+  if (token && user && isAuthPage) return <>Loading...</>;
+  if (token && user) return <>{children}</>;
+  if (!token && isAuthPage) return <>{children}</>;
+  return <>Loading...</>;
 };
 
 export default AuthWrapper;
