@@ -4,20 +4,14 @@ import Image from "next/image";
 import styles from "./sideBar.module.scss";
 import { LOGO } from "@/utils/imageRelativePath";
 import LucideIcon from "@/components/LucideIcon/LucideIcon";
-import { icons } from "lucide-react";
+import { SidebarElements } from "@/types/common.types";
 import { usePathname, useRouter } from "next/navigation";
-
-type sidebarElements = {
-  name: string;
-  icon: keyof typeof icons;
-  pathName: string;
-};
 
 export default function SideBar() {
   const router = useRouter();
   const currentPath = usePathname();
 
-  const sidebarElements: sidebarElements[] = [
+  const sidebarElements: SidebarElements[] = [
     {
       name: "Dashboard",
       icon: "LayoutDashboard",

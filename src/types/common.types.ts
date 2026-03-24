@@ -1,6 +1,6 @@
-import { icons, LucideIcon } from "lucide-react";
+import { icons } from "lucide-react";
 
-export interface LucidIconProps {
+export interface LucideIconProps {
   name: keyof typeof icons;
   size?: number;
   strokeWidth?: number;
@@ -9,11 +9,17 @@ export interface LucidIconProps {
   absoluteStrokeWidth?: boolean;
 }
 
-export interface DashboardItem {
+export interface DashboardItemProps {
   title: string;
-  value: number;
+  value: string | number;
   subtitle: string;
-  icon: LucideIcon;
+  icon: keyof typeof icons;
   iconBg: string;
   iconColor: string;
 }
+
+export type SidebarElements = {
+  name: string;
+  icon: keyof typeof icons;
+  pathName: string;
+};
