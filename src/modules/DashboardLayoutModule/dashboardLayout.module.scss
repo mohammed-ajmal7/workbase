@@ -1,3 +1,4 @@
+@use "@/styles/variables.scss";
 .dashboardWrapper {
   border: 1px solid var(--color-border);
   display: flex;
@@ -10,5 +11,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    .mainSection {
+      border: 1px solid red;
+      background: var(--color-bg);
+      width: 100%;
+      height: 100%;
+    }
   }
 }

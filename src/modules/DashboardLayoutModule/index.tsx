@@ -11,6 +11,7 @@ export default function DashboardLayoutModule({
   return (
     <div className={styles.dashboardWrapper}>
       <SideBar />
+
       <div className={styles.rightSection}>
         <Header />
         <main className={styles.mainSection}>{children}</main>
