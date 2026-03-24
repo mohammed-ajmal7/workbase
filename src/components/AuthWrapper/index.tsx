@@ -3,26 +3,29 @@ import { useAppSelector } from "@/redux/hooks/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
+const PUBLIC_ROUTES = ["/login", "/register"];
+
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const { token = "", user } = useAppSelector((state) => state.auth);
 
   const router = useRouter();
   const path = usePathname();
 
-  const isAuthPage = ["/login", "/register"].includes(path.trim());
+  const isPublicRoute = PUBLIC_ROUTES.includes(path.trim());
+  const isAuthenticated = !!token && !!user;
 
   useEffect(() => {
-    if (!token || !user) {
-      if (!isAuthPage) router.push("/register");
-    } else if (token && user && isAuthPage) {
+    if (!isPublicRoute && !isAuthenticated) {
+      router.push("/login");
+    } else if (isPublicRoute && isAuthenticated) {
       router.push("/dashboard");
     }
-  }, [token, user, router, isAuthPage]);
+  }, [isAuthenticated, isPublicRoute, router]);
 
-  if (token && user && isAuthPage) return <>Loading...</>;
-  if (token && user) return <>{children}</>;
-  if (!token && isAuthPage) return <>{children}</>;
-  return <>Loading...</>;
+  if (isAuthenticated && isPublicRoute) return <>Loading...</>;
+  if (isAuthenticated) return <>{children}</>;
+  if (!isAuthenticated && isPublicRoute) return <>{children}</>;
+  return null;
 };
 
 export default AuthWrapper;

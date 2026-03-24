@@ -39,7 +39,7 @@ export default function SideBar() {
       pathName: "/settings",
     },
     {
-      name: "Suppport",
+      name: "Support",
       icon: "MessagesSquare",
       pathName: "/support",
     },
@@ -64,7 +64,6 @@ export default function SideBar() {
       <div className={styles.menuContainer}>
         {sidebarElements.map((cElement) => {
           const isActive = currentPath === cElement.pathName;
-
           return (
             <div
               className={`${styles.menuItemContainer} ${isActive ? styles.active : ""}`}
@@ -73,7 +72,8 @@ export default function SideBar() {
             >
               <LucideIcon
                 name={cElement.icon}
-                className={`${styles.menuItemIcon} ${isActive ? styles.activeItem : ""}`}
+                className={styles.menuItemIcon}
+                color={isActive ? "#2563eb" : "var(--color-icon)"}
               />
               <span
                 className={`${styles.menuItemName} ${isActive ? styles.activeName : ""}`}

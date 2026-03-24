@@ -23,15 +23,6 @@
 
   .menuContainer {
     padding: 20px;
-
-    :hover {
-      background: var(--color-grey-hover);
-    }
-
-    .active {
-      background: var(--color-selected-bg);
-    }
-
     .menuItemContainer {
       display: flex;
       align-items: center;
@@ -39,10 +30,25 @@
       padding: 10px;
       border-radius: 10px;
       cursor: pointer;
+
+      &.active {
+        background: var(--color-selected-bg);
+      }
+      &:not(.active):hover {
+        background: var(--color-grey-hover);
+      }
+
       .menuItemIcon {
+        &.activeIcon {
+          color: #2563eb;
+        }
       }
       .menuItemName {
         color: var(--color-font-grey);
+
+        &.activeName {
+          color: #000;
+        }
       }
     }
   }
