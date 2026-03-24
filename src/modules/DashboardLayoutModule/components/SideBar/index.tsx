@@ -39,7 +39,7 @@ export default function SideBar() {
       pathName: "/settings",
     },
     {
-      name: "Suppport",
+      name: "Support",
       icon: "MessagesSquare",
       pathName: "/support",
     },
@@ -62,24 +62,25 @@ export default function SideBar() {
         <h1>WorkBase</h1>
       </div>
       <div className={styles.menuContainer}>
-        {sidebarElements.map((cElement) => (
+        {sidebarElements.map((cElement) => {
           const isActive = currentPath === cElement.pathName;
-          <div
-            className={`${styles.menuItemContainer} ${activeItem === cElement.name ? styles.active : ""}`}
-            onClick={() => handleClick(cElement.pathName, cElement.name)}
-            key={cElement.name}
-          >
-            <LucideIcon
-              name={cElement.icon}
-              className={`${styles.menuItemIcon} ${activeItem === cElement.name ? styles.activeItem : ""}`}
-            />
-            <span
-              className={`${styles.menuItemName} ${activeItem === cElement.name ? styles.activeName : ""}`}
-            >
-              {cElement.name}
-            </span>
-          </div>
-        ))}
+          return (
+            <div
+              className={`${styles.menuItemContainer} ${isActive ? styles.active : ""}`}
+              onClick={() => handleClick(cElement.pathName)}
+              key={cElement.name}>
+              <LucideIcon
+                name={cElement.icon}
+                className={styles.menuItemIcon}
+                color={isActive ? "#2563eb" : "var(--color-icon)"}
+              />
+              <span
+                className={`${styles.menuItemName} ${isActive ? styles.activeName : ""}`}>
+                {cElement.name}
+              </span>
+            </div>
+          );
+        })}
         <div className={styles.userContainer}></div>
       </div>
     </aside>
