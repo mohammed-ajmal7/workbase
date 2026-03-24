@@ -7,11 +7,11 @@ interface DashboardCardProps {
 
 function DashboardCard({ Arrdata }: DashboardCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 pb-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
       {Arrdata.map((cElement) => (
         <div
           key={cElement.title}
-          className="border-gray-200 border rounded-md w-full px-4 py-5"
+          className="bg-white border-gray-200 border rounded-md w-full px-4 py-5"
         >
           <div className="flex justify-between">
             <h2 className="text-[14px] text-gray-500">{cElement.title}</h2>

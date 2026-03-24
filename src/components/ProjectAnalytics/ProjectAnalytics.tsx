@@ -25,8 +25,8 @@ const data: DataPoint[] = [
 
 export default function ProjectAnalytics() {
   return (
-    <ResponsiveContainer width="100%" height={400} className="-ml-8">
-      <LineChart data={data}>
+    <ResponsiveContainer width="100%" height={400}>
+      <LineChart data={data} margin={{ top: 30 }}>
         <CartesianGrid strokeDasharray="1 1" />
         <XAxis dataKey="month" />
         <YAxis />
