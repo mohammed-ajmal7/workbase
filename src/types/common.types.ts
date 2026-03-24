@@ -23,3 +23,9 @@ export type SidebarElements = {
   icon: keyof typeof icons;
   pathName: string;
 };
+
+export type DataPoint = {
+  month: string;
+  total: number;
+  completed: number;
+};
