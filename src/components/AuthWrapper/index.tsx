@@ -3,24 +3,29 @@ import { useAppSelector } from "@/redux/hooks/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
+const PUBLIC_ROUTES = ["/login", "/register"];
+
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const { token = "", user } = useAppSelector((state) => state.auth);
 
   const router = useRouter();
   const path = usePathname();
 
+  const isPublicRoute = PUBLIC_ROUTES.includes(path.trim());
+  const isAuthenticated = !!token && !!user;
+
   useEffect(() => {
-    if (!token || !user) {
+    if (!isPublicRoute && !isAuthenticated) {
       router.push("/login");
-      return;
-    } else if (token && user && path.trim() === "/login") {
+    } else if (isPublicRoute && isAuthenticated) {
       router.push("/dashboard");
     }
-  }, [token, user, router, path]);
+  }, [isAuthenticated, isPublicRoute, router]);
 
-  if (token && path.trim() === "/login") return "Loading....";
-  if (token) return <>{children}</>;
-  if (!token && path.trim() === "/login") return <>{children}</>;
+  if (isAuthenticated && isPublicRoute) return <>Loading...</>;
+  if (isAuthenticated) return <>{children}</>;
+  if (!isAuthenticated && isPublicRoute) return <>{children}</>;
+  return null;
 };
 
 export default AuthWrapper;
