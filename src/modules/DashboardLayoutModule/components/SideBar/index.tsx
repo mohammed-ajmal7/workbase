@@ -4,20 +4,14 @@ import Image from "next/image";
 import styles from "./sideBar.module.scss";
 import { LOGO } from "@/utils/imageRelativePath";
 import LucideIcon from "@/components/LucideIcon/LucideIcon";
-import { icons } from "lucide-react";
+import { SidebarElements } from "@/types/common.types";
 import { usePathname, useRouter } from "next/navigation";
-
-type sidebarElements = {
-  name: string;
-  icon: keyof typeof icons;
-  pathName: string;
-};
 
 export default function SideBar() {
   const router = useRouter();
   const currentPath = usePathname();
 
-  const sidebarElements: sidebarElements[] = [
+  const sidebarElements: SidebarElements[] = [
     {
       name: "Dashboard",
       icon: "LayoutDashboard",
@@ -68,14 +62,16 @@ export default function SideBar() {
             <div
               className={`${styles.menuItemContainer} ${isActive ? styles.active : ""}`}
               onClick={() => handleClick(cElement.pathName)}
-              key={cElement.name}>
+              key={cElement.name}
+            >
               <LucideIcon
                 name={cElement.icon}
                 className={styles.menuItemIcon}
                 color={isActive ? "#2563eb" : "var(--color-icon)"}
               />
               <span
-                className={`${styles.menuItemName} ${isActive ? styles.activeName : ""}`}>
+                className={`${styles.menuItemName} ${isActive ? styles.activeName : ""}`}
+              >
                 {cElement.name}
               </span>
             </div>
