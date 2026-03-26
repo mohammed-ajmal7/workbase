@@ -1,6 +1,7 @@
 import DashboardCard from "@/components/DashboardCard/DashboardCard";
 import ProjectAnalytics from "@/components/ProjectAnalytics/ProjectAnalytics";
-import { DASHBOARD_CARD_DATA } from "@/constants/dashboard.constant";
+import RecentActivities from "@/components/recentActivities/recentActivities";
+import { DASHBOARD_CARD_DATA, recentActivitiesData } from "@/constants/dashboard.constant";
 
 export default function page() {
   return (
@@ -12,7 +13,10 @@ export default function page() {
           Project activity over the last 8 months
         </p>
         <ProjectAnalytics />
+      
       </div>
+      
+        <RecentActivities data={recentActivitiesData} />
     </div>
   );
 }
