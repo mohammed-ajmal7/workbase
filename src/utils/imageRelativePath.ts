@@ -1,1 +1,1 @@
-export const LOGO = "/assets/svgs/sideBarIcons/logo.png";
+export const LOGO = "/assets/svgs/sideBarIcons/logo.svg";
