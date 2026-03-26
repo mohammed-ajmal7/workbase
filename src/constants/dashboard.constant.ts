@@ -1,4 +1,7 @@
-import { DashboardItemProps, recentActivitiesDataProps } from "@/types/common.types";
+import {
+  DashboardItemProps,
+  RecentActivitiesDataProps,
+} from "@/types/common.types";
 
 export const DASHBOARD_CARD_DATA: DashboardItemProps[] = [
   {
@@ -35,7 +38,7 @@ export const DASHBOARD_CARD_DATA: DashboardItemProps[] = [
   },
 ];
 
-export const recentActivitiesData:recentActivitiesDataProps[] = [
+export const RECENT_ACTIVITIES_DATA: RecentActivitiesDataProps[] = [
   {
     id: 1,
     name: "Sarah Chen",
@@ -83,5 +86,5 @@ export const recentActivitiesData:recentActivitiesDataProps[] = [
     target: "Auth Service",
     time: "1 day ago",
     avatar: "https://i.pravatar.cc/40?img=6",
-  }
+  },
 ];

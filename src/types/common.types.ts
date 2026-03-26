@@ -30,12 +30,11 @@ export type DataPoint = {
   completed: number;
 };
 
-export interface recentActivitiesDataProps{
-
-    id:number,
-    name:string,
-    action:string,
-    target:string,
-    time:string,
-    avatar:string
- }
+export interface RecentActivitiesDataProps {
+  id: number;
+  name: string;
+  action: string;
+  target: string;
+  time: string;
+  avatar: string;
+}
