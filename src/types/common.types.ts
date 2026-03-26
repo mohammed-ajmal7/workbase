@@ -29,3 +29,13 @@ export type DataPoint = {
   total: number;
   completed: number;
 };
+
+export interface recentActivitiesDataProps{
+
+    id:number,
+    name:string,
+    action:string,
+    target:string,
+    time:string,
+    avatar:string
+ }
